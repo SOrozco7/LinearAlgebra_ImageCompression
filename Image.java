@@ -4,8 +4,9 @@ import java.util.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.awt.*;
+import javax.swing.*;
 
-public class Image{
+public class Image {
 
 	/*
 		Constructor: recibe array list de puntos y dimensiones
@@ -92,14 +93,21 @@ public class Image{
 	}
 	
 	/**
+		Plots image to JFrame
 	*/
 	public void plot() {
-		
-	}
-	
-	/**
-	*/
-	public Image(IFS transformations) {
-		
+		JFrame frame = new JFrame();
+		frame.setPreferredSize(new Dimension(this.width, this.height));
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setLayout(null);
+		JLabel[] labels = new JLabel[this.points.size()];
+		for(int i = 0; i < this.points.size(); i++) {
+			labels[i] = new JLabel();
+			labels[i].setBackground(Color.BLACK);
+			labels[i].setBounds(points[i].getX(), points[i].getY(), 1, 1)
+			frame.add(labels[i]);
+		}
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 }
