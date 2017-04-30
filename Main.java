@@ -16,7 +16,7 @@ public class Main{
 	private static double[] transformationValues = new double[TRANSFORMATION_TOTAL_VALUES]; //from a to f
 	private static Image compressedImage;
 	private static Image decompressedImage;
-	private static final int SIZE = 2;
+	private static final int SIZE = 5;
 
 	public static void readPoints(){
 

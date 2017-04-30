@@ -99,18 +99,18 @@ public class Image {
 		this.height = height;
 	}
 	
-	public void addAxes(JFrame f){
+	public void addAxes(JFrame f, int size){
 
 		JLabel yAxis = new JLabel();
 		yAxis.setBackground(Color.GRAY);
 		yAxis.setOpaque(true);
-		yAxis.setBounds(OFFSET_X, 0, 1, this.height);
+		yAxis.setBounds(this.width/2, 0, size, /*this.height*/800);
 		f.add(yAxis);
 
 		JLabel xAxis = new JLabel();
 		xAxis.setBackground(Color.GRAY);
 		xAxis.setOpaque(true);
-		xAxis.setBounds(0, OFFSET_Y, this.width, 1);
+		xAxis.setBounds(0, this.height/2, /*this.width*/1280, size);
 		f.add(xAxis);
 	}
 
@@ -125,14 +125,14 @@ public class Image {
 		frame.setLayout(null);
 		JLabel[] labels = new JLabel[this.points.size()];
 
-		addAxes(frame);
+		addAxes(frame, size);
 		
 		for(int i = 0; i < this.points.size(); i++) {
 			
 			labels[i] = new JLabel();
 			labels[i].setBackground(c);
 			labels[i].setOpaque(true);
-			labels[i].setBounds((int) (points.get(i).getX() + OFFSET_X)*size, (int) (-points.get(i).getY() + OFFSET_Y)*size, size, size);
+			labels[i].setBounds((int) (points.get(i).getX()*size) + this.width/2, (int) (-points.get(i).getY()*size) + this.height/2, size, size);
 			frame.add(labels[i]);
 		}
 		
