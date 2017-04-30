@@ -15,14 +15,16 @@ public class Image {
 	private ArrayList<Point> points;
 	private int width;
 	private int height;
+	private final int DEFAULT_HEIGHT = 500;
+	private final int DEFAULT_WIDTH = 500;
 	
 	/**
 		Blank constructor
 	*/
 	public Image() {
 		this.setPoints(new ArrayList<Point>());
-		this.setWidth(500); 
-		this.setHeight(500);
+		this.setWidth(DEFAULT_WIDTH); 
+		this.setHeight(DEFAULT_HEIGHT);
 	}
 	
 	/**
@@ -32,10 +34,10 @@ public class Image {
 		@param		width		The image witdh
 		@param		height		The image height
 	*/
-	public Image(ArrayList<Point> points, int width, int height) {
+	public Image(ArrayList<Point> points) {
 		this.setPoints(points);
-		this.setWidth(width);
-		this.setHeight(height);
+		this.setWidth(DEFAULT_WIDTH);
+		this.setHeight(DEFAULT_HEIGHT);
 	}
 	
 	/**
@@ -96,17 +98,21 @@ public class Image {
 		Plots image to JFrame
 	*/
 	public void plot() {
+		
 		JFrame frame = new JFrame();
-		frame.setPreferredSize(new Dimension(this.width, this.height));
+		frame.setPreferredSize(new Dimension(DEFAULT_HEIGHT, DEFAULT_HEIGHT));
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setLayout(null);
 		JLabel[] labels = new JLabel[this.points.size()];
+		
 		for(int i = 0; i < this.points.size(); i++) {
+			
 			labels[i] = new JLabel();
 			labels[i].setBackground(Color.BLACK);
 			labels[i].setBounds((int) points.get(i).getX(), (int) points.get(i).getY(), 1, 1);
 			frame.add(labels[i]);
 		}
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
