@@ -36,6 +36,6 @@ public class Point{
 
 	public String toString(){
 
-		System.out.println("(" + x + ", " + y + ")");
+		return "(" + x + ", " + y + ")";
 	}
 }
