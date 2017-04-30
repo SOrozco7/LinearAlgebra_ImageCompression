@@ -104,7 +104,7 @@ public class Image {
 		for(int i = 0; i < this.points.size(); i++) {
 			labels[i] = new JLabel();
 			labels[i].setBackground(Color.BLACK);
-			labels[i].setBounds(points[i].getX(), points[i].getY(), 1, 1)
+			labels[i].setBounds(points[i].getX(), points[i].getY(), 1, 1);
 			frame.add(labels[i]);
 		}
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
