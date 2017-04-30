@@ -99,19 +99,25 @@ public class Image {
 		this.height = height;
 	}
 	
-	public void addAxes(JFrame f, int size){
-
+	public void addAxes(JLayeredPane layeredPane, int size){
+		
 		JLabel yAxis = new JLabel();
 		yAxis.setBackground(Color.GRAY);
 		yAxis.setOpaque(true);
-		yAxis.setBounds(this.width/2, 0, size, /*this.height*/800);
-		f.add(yAxis);
+		if(size % 2 == 0)
+			yAxis.setBounds(this.width/2 + size/2, 0, 2, /*this.height*/800);
+		else
+			yAxis.setBounds(this.width/2 + size/2, 0, 1, /*this.height*/800);
+		layeredPane.add(yAxis, new Integer(2));
 
 		JLabel xAxis = new JLabel();
 		xAxis.setBackground(Color.GRAY);
 		xAxis.setOpaque(true);
-		xAxis.setBounds(0, this.height/2, /*this.width*/1280, size);
-		f.add(xAxis);
+		if(size % 2 == 0)
+			xAxis.setBounds(0, this.height/2 + size/2, /*this.width*/1280, 2);
+		else
+			xAxis.setBounds(0, this.height/2 + size/2, /*this.width*/1280, 1);
+		layeredPane.add(xAxis, new Integer(2));
 	}
 
 	/**
@@ -123,17 +129,18 @@ public class Image {
 		frame.setBounds(0, 0, DEFAULT_HEIGHT, DEFAULT_HEIGHT);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setLayout(null);
-		JLabel[] labels = new JLabel[this.points.size()];
-
-		addAxes(frame, size);
+		JLayeredPane layeredPane = frame.getLayeredPane();
 		
+		addAxes(layeredPane, size);
+		
+		JLabel[] labels = new JLabel[this.points.size()];
 		for(int i = 0; i < this.points.size(); i++) {
 			
 			labels[i] = new JLabel();
 			labels[i].setBackground(c);
 			labels[i].setOpaque(true);
 			labels[i].setBounds((int) (points.get(i).getX()*size) + this.width/2, (int) (-points.get(i).getY()*size) + this.height/2, size, size);
-			frame.add(labels[i]);
+			layeredPane.add(labels[i], new Integer(3));
 		}
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
