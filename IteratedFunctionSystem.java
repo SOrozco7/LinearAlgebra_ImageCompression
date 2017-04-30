@@ -40,8 +40,8 @@ public class IteratedFunctionSystem{
 
 		else{ //Reverse execution
 
-			for(int i = totalTransformations.size() - 1; i >= 0; i--)
-				transformedImg = decompressImage(img, totalTransformations.get(i));
+			for(int i = 0; i < totalTransformations.size(); i++)
+				transformedImg = decompressImage(transformedImg, totalTransformations.get(totalTransformations.size() - i - 1));
 		}
 
 		return transformedImg;
