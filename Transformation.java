@@ -5,6 +5,17 @@ import java.io.*;
 
 public class Transformation{
 
+	private double a;
+	private double b;
+	private double c;
+	private double d;
+	private double e;
+	private double f;
+	private double r;
+	private double s;
+	private double theta;
+	private double phi;
+
 	/*
 		Constructor: recibe a, b, c, d, e, f
 		Constructor: recibe r, s, theta, phi, e, f
@@ -15,7 +26,7 @@ public class Transformation{
 	/**
 	*	Constructor which receives a, b, c, d, e and f.
 	*/
-	public Transformation(double a, double b, double c, double d, double e, double f){
+	public Transformation(double a, double b, double c, double d, double e, double f, boolean byMatrix){
 
 		setA(a);
 		setB(b);

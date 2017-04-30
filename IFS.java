@@ -12,5 +12,5 @@ public class IFS{
 		método reverseExecuteTransformations: recibe una imagen y devuelve otra
 	*/
 
-	
+
 }

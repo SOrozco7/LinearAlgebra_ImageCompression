@@ -20,7 +20,7 @@ public class Image{
 	*/
 	public Image() {
 		this.setPoints(new ArrayList<Point>());
-		this.setWidth(500);
+		this.setWidth(500); 
 		this.setHeight(500);
 	}
 	
