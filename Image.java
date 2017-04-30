@@ -17,14 +17,19 @@ public class Image {
 	private int height;
 	private final int DEFAULT_HEIGHT = 500;
 	private final int DEFAULT_WIDTH = 500;
+	private int OFFSET_X; 
+	private int OFFSET_Y;
 	
 	/**
-		Blank constructor
+	*	Blank constructor
 	*/
 	public Image() {
+
 		this.setPoints(new ArrayList<Point>());
 		this.setWidth(DEFAULT_WIDTH); 
 		this.setHeight(DEFAULT_HEIGHT);
+		OFFSET_X = this.width/2;
+		OFFSET_Y = this.height/2;
 	}
 	
 	/**
@@ -94,26 +99,50 @@ public class Image {
 		this.height = height;
 	}
 	
+	public void addAxes(JFrame f){
+
+		JLabel yAxis = new JLabel();
+		yAxis.setBackground(Color.GRAY);
+		yAxis.setOpaque(true);
+		yAxis.setBounds(OFFSET_X, 0, 1, this.height);
+		f.add(yAxis);
+
+		JLabel xAxis = new JLabel();
+		xAxis.setBackground(Color.GRAY);
+		xAxis.setOpaque(true);
+		xAxis.setBounds(0, OFFSET_Y, this.width, 1);
+		f.add(xAxis);
+	}
+
 	/**
 		Plots image to JFrame
 	*/
-	public void plot() {
+	public void plot(Color c, int size) {
 		
 		JFrame frame = new JFrame();
-		frame.setPreferredSize(new Dimension(DEFAULT_HEIGHT, DEFAULT_HEIGHT));
+		frame.setBounds(0, 0, DEFAULT_HEIGHT, DEFAULT_HEIGHT);
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setLayout(null);
 		JLabel[] labels = new JLabel[this.points.size()];
+
+		addAxes(frame);
 		
 		for(int i = 0; i < this.points.size(); i++) {
 			
 			labels[i] = new JLabel();
-			labels[i].setBackground(Color.BLACK);
-			labels[i].setBounds((int) points.get(i).getX(), (int) points.get(i).getY(), 1, 1);
+			labels[i].setBackground(c);
+			labels[i].setOpaque(true);
+			labels[i].setBounds((int) (points.get(i).getX() + OFFSET_X)*size, (int) (-points.get(i).getY() + OFFSET_Y)*size, size, size);
 			frame.add(labels[i]);
 		}
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+
+	public void displayPoints(){
+
+		for(Point p : points)
+			System.out.println(p);
 	}
 }

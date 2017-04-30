@@ -28,35 +28,68 @@ public class Transformation{
 	*/
 	public Transformation(double a, double b, double c, double d, double e, double f, boolean byMatrix){
 
-		setA(a);
-		setB(b);
-		setC(c);
-		setD(d);
-		setE(e);
-		setF(f);
+		if(byMatrix){
 
-		computeTheta();
-		computePhi();
-		computeR();
-		computeS();
+			setA(a);
+			setB(b);
+			setC(c);
+			setD(d);
+			setE(e);
+			setF(f);
+
+			computeTheta();
+			computePhi();
+			computeR();
+			computeS();
+		}
+
+		else{
+
+			setR(r);
+			setS(s);
+			setTheta(theta);
+			setPhi(phi);
+			setE(e);
+			setF(f);
+
+			computeA();
+			computeB();
+			computeC();
+			computeD();
+		}
 	}
 
-	/**
-	*	Constructor which receives r, s, theta, phi, e and f.
-	*/
-	public Transformation(double r, double s, double theta, double phi, double e, double f){
+	public Transformation(double[] transformationValues, boolean byMatrix){
 
-		setR(r);
-		setS(s);
-		setTheta(theta);
-		setPhi(phi);
-		setE(e);
-		setF(f);
+		if(byMatrix){
 
-		computeA();
-		computeB();
-		computeC();
-		computeD();
+			setA(transformationValues[0]);
+			setB(transformationValues[1]);
+			setC(transformationValues[2]);
+			setD(transformationValues[3]);
+			setE(transformationValues[4]);
+			setF(transformationValues[5]);
+
+			computeTheta();
+			computePhi();
+			computeR();
+			computeS();
+		}
+
+		else{
+
+			setR(transformationValues[0]);
+			setS(transformationValues[1]);
+			setTheta(transformationValues[2]);
+			setPhi(transformationValues[3]);
+			setE(transformationValues[4]);
+			setF(transformationValues[5]);
+
+			computeA();
+			computeB();
+			computeC();
+			computeD();
+		}
 	}
 
 	/**	
@@ -189,7 +222,7 @@ public class Transformation{
 	*/
 	public void computeTheta(){
 
-		theta = Math.atan(b/a);
+		theta = Math.atan(c/a);
 	}
 
 	/**	
@@ -197,7 +230,7 @@ public class Transformation{
 	*/
 	public void computePhi(){
 
-		phi = Math.atan(-1.0*c/d);
+		phi = Math.atan(-1.0*b/d);
 	}
 
 	/**

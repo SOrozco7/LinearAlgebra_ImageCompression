@@ -1,9 +1,9 @@
-// IFS.java
+// IteratedFunctionSystem.java
 
 import java.util.*;
 import java.io.*;
 
-public class IFS{
+public class IteratedFunctionSystem{
 
 	/*
 		Constructor: 
@@ -15,7 +15,7 @@ public class IFS{
 	private ArrayList<Transformation> totalTransformations;
 	// private ArrayList<Double> totalProbabilities;
 
-	public IFS(){
+	public IteratedFunctionSystem(){
 
 		totalTransformations = new ArrayList<Transformation>();
 	}
@@ -40,10 +40,8 @@ public class IFS{
 
 		else{ //Reverse execution
 
-			for(int i = totalTransformations.size() - 1; i >= 0; i--){
-
-
-			}
+			for(int i = totalTransformations.size() - 1; i >= 0; i--)
+				transformedImg = decompressImage(img, totalTransformations.get(i));
 		}
 
 		return transformedImg;
