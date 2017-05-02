@@ -18,9 +18,9 @@ public class Main{
 	private static double[] transformationValues = new double[TRANSFORMATION_TOTAL_VALUES]; //from a to f
 	private static Image compressedImage;
 	private static Image decompressedImage;
-	private static final int SIZE = 12;
-	private final static int DEFAULT_HEIGHT = 500;
-	private final static int DEFAULT_WIDTH = 500;
+	private static final int SIZE = 1;
+	private final static int DEFAULT_HEIGHT = 1000;
+	private final static int DEFAULT_WIDTH = 1000;
 
 	public static void readPoints(){
 
@@ -29,8 +29,10 @@ public class Main{
 
 		for(int i = 0; i < pointsAmount; i++){
 
-			x = sc.nextDouble();
-			y = sc.nextDouble();
+			String line = sc.nextLine();
+			String[] totN = line.split(" ");
+			x = Integer.parseInt(totN[0]);
+			y = Integer.parseInt(totN[1]);
 
 			totalPoints.add(new Point(x, y));
 		}
@@ -43,7 +45,7 @@ public class Main{
 		for(int i = 0; i < transformationsAmount; i++){
 
 			for(int j = 0; j < TRANSFORMATION_TOTAL_VALUES; j++)
-				transformationValues[j] = sc.nextDouble();
+				transformationValues[j] = Double.parseDouble(sc.nextLine());
 
 			myIFS.addTransformation(new Transformation(transformationValues, true));
 		}
@@ -51,7 +53,7 @@ public class Main{
 
 	public static void main(String[] args){
 
-		pointsAmount = sc.nextInt();
+		pointsAmount = Integer.parseInt(sc.nextLine());
 
 		readPoints();
 
@@ -62,17 +64,24 @@ public class Main{
 
 		originalImg = new Image(totalPoints, frame);
 		originalImg.plot(Color.BLACK, SIZE);
+		System.out.println("Coordinates of the original image:");
 		originalImg.displayPoints();
 
-		transformationsAmount = sc.nextInt();
+		System.out.println();
+
+		transformationsAmount = Integer.parseInt(sc.nextLine());
 		readTransformations(frame);
 
 		compressedImage = myIFS.executeTransformations(originalImg, 1);
 		compressedImage.plot(Color.BLUE, SIZE);
+		System.out.println("Coordinates of the compressed image:");
 		compressedImage.displayPoints();
+
+		System.out.println();
 
 		decompressedImage = myIFS.executeTransformations(compressedImage, -1);
 		decompressedImage.plot(Color.RED, SIZE);
+		System.out.println("Coordinates of the decompressed image:");
 		decompressedImage.displayPoints();
 	}
 }
