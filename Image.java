@@ -19,6 +19,7 @@ public class Image {
 	private final int DEFAULT_WIDTH = 500;
 	private int OFFSET_X; 
 	private int OFFSET_Y;
+	private JFrame frame;
 	
 	/**
 	*	Blank constructor
@@ -39,10 +40,16 @@ public class Image {
 		@param		width		The image witdh
 		@param		height		The image height
 	*/
-	public Image(ArrayList<Point> points) {
+	public Image(ArrayList<Point> points, JFrame frame) {
 		this.setPoints(points);
 		this.setWidth(DEFAULT_WIDTH);
 		this.setHeight(DEFAULT_HEIGHT);
+		this.setFrame(frame);
+	}
+
+	public void setFrame(JFrame frame){
+
+		this.frame = frame;
 	}
 	
 	/**
@@ -125,10 +132,6 @@ public class Image {
 	*/
 	public void plot(Color c, int size) {
 		
-		JFrame frame = new JFrame();
-		frame.setBounds(0, 0, DEFAULT_HEIGHT, DEFAULT_HEIGHT);
-		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setLayout(null);
 		JLayeredPane layeredPane = frame.getLayeredPane();
 		
 		addAxes(layeredPane, size);

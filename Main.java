@@ -3,6 +3,8 @@
 import java.util.*;
 import java.io.*;
 import java.awt.Color;
+import java.awt.*;
+import javax.swing.*;
 
 public class Main{
 
@@ -17,6 +19,8 @@ public class Main{
 	private static Image compressedImage;
 	private static Image decompressedImage;
 	private static final int SIZE = 10;
+	private final static int DEFAULT_HEIGHT = 500;
+	private final static int DEFAULT_WIDTH = 500;
 
 	public static void readPoints(){
 
@@ -32,9 +36,9 @@ public class Main{
 		}
 	}
 
-	public static void readTransformations(){
+	public static void readTransformations(JFrame frame){
 
-		myIFS = new IteratedFunctionSystem();
+		myIFS = new IteratedFunctionSystem(frame);
 
 		for(int i = 0; i < transformationsAmount; i++){
 
@@ -51,12 +55,17 @@ public class Main{
 
 		readPoints();
 
-		originalImg = new Image(totalPoints);
+		JFrame frame = new JFrame();
+		frame.setBounds(0, 0, DEFAULT_HEIGHT, DEFAULT_HEIGHT);
+		frame.getContentPane().setBackground(Color.WHITE);
+		frame.setLayout(null);
+
+		originalImg = new Image(totalPoints, frame);
 		originalImg.plot(Color.BLACK, SIZE);
 		originalImg.displayPoints();
 
 		transformationsAmount = sc.nextInt();
-		readTransformations();
+		readTransformations(frame);
 
 		compressedImage = myIFS.executeTransformations(originalImg, 1);
 		compressedImage.plot(Color.BLUE, SIZE);

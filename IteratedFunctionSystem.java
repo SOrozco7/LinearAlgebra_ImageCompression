@@ -2,6 +2,8 @@
 
 import java.util.*;
 import java.io.*;
+import java.awt.*;
+import javax.swing.*;
 
 public class IteratedFunctionSystem{
 
@@ -13,11 +15,18 @@ public class IteratedFunctionSystem{
 	*/
 
 	private ArrayList<Transformation> totalTransformations;
+	private JFrame frame;
 	// private ArrayList<Double> totalProbabilities;
 
-	public IteratedFunctionSystem(){
+	public IteratedFunctionSystem(JFrame frame){
 
 		totalTransformations = new ArrayList<Transformation>();
+		setFrame(frame);
+	}
+
+	public void setFrame(JFrame frame){
+
+		this.frame = frame;
 	}
 
 	//p = probability
@@ -58,7 +67,7 @@ public class IteratedFunctionSystem{
 			newPoints.add(new Point(newX, newY));
 		}
 
-		return new Image(newPoints);
+		return new Image(newPoints, frame);
 	}
 
 	public Image decompressImage(Image img, Transformation t){
@@ -84,6 +93,6 @@ public class IteratedFunctionSystem{
 			newPoints.add(new Point(newX, newY));
 		}
 
-		return new Image(newPoints);
+		return new Image(newPoints, frame);
 	}
 }
