@@ -27,14 +27,14 @@ Instructions:
 	m = amount of transformations
 	m lines each with the 6 values a, b, c, d, e, f corresponding to a single transformation
 
-	This is an example of input file:
+	This is an example of an input file:
 
-	4
-	-2 2
-	2 2
-	2 -2
-	-2 -2
-	2
-	2 -1 1 1 0 0 
-	2 -1 1 1 0 0
+	4   
+	-2 2  
+	2 2  
+	2 -2  
+	-2 -2  
+	2  
+	2 -1 1 1 0 0   
+	2 -1 1 1 0 0  
 
