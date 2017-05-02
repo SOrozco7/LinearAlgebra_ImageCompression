@@ -18,7 +18,7 @@ public class Main{
 	private static double[] transformationValues = new double[TRANSFORMATION_TOTAL_VALUES]; //from a to f
 	private static Image compressedImage;
 	private static Image decompressedImage;
-	private static final int SIZE = 1;
+	private static final int SIZE = 12;
 	private final static int DEFAULT_HEIGHT = 1000;
 	private final static int DEFAULT_WIDTH = 1000;
 
@@ -44,8 +44,11 @@ public class Main{
 
 		for(int i = 0; i < transformationsAmount; i++){
 
+			String line = sc.nextLine();
+			String[] totValues = line.split(" ");
+
 			for(int j = 0; j < TRANSFORMATION_TOTAL_VALUES; j++)
-				transformationValues[j] = Double.parseDouble(sc.nextLine());
+				transformationValues[j] = Double.parseDouble(totValues[j]);
 
 			myIFS.addTransformation(new Transformation(transformationValues, true));
 		}
